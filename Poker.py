@@ -60,7 +60,5 @@ print(*maomesa)
 
 #mões
 
-#testes
-print("teste")
 
 
