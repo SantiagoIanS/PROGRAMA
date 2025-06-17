@@ -88,18 +88,18 @@ print(f"Seu total de fichas são: {fichasuser}")
 
 aposta3 = int(input("Quantas fichas você apostará na segunda rodada? "))
 fichasuser = fichasuser - aposta3
-aposta = aposta1 + aposta2 + aposta3
+aposta = aposta + aposta3
 
 print(f"Seu total de fichas atuais são: {fichasuser}")
 print(f"Fichas na mesa: {aposta}")
 maopoker = []
 maopoker = maopoker + maomesa
 maopoker = maopoker + maouser
-maopoker.sort()
+maopoker.sort(key=lambda carta: valores_cartas[carta])
 print(f", ".join(maopoker))
 
-def valor_carta(cartastodas):
-    partes = cartastodas.strip().split()  # exemplo: "10 ♠" vira ["10", "♠"]
+def valor_carta(carta):
+    partes = carta.strip().split()  # exemplo: "10 ♠" vira ["10", "♠"]
     if len(partes) >= 1:
         valor = partes[0]
         return valores_cartas.get(valor, 0)  # retorna 0 se não encontrar (segurança)
@@ -110,8 +110,8 @@ def Straight(mao):
     valores = list(set(valores))
     if 14 in valores:
         valores.append(1)
-    valores.sort()
-    for i in range(len(valores) - 4):
+        valores.sort()
+    for i in range(len(valores) - 6):
         if valores[i] + 1 == valores[i+1] and \
             valores[i] + 2 == valores[i+2] and \
             valores[i] + 3 == valores[i+3] and \
