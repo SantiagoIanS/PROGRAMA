@@ -44,7 +44,10 @@ print(f"Sua mão: ", end="")
 print(", ".join(maouser))
 print(f"Seu total de fichas são: {fichasuser}")
 
-aposta1 = int(input("Quantas fichas você apostará na primeira rodada? "))
+aposta1 = int(input("Quantas fichas você apostará na primeira rodada? (Escreva 0 para desistir) "))
+if aposta1 == 0:
+    print("Você desistiu")
+    quit()
 fichasuser = fichasuser - aposta1
 
 print(f"Seu total de fichas atuais são: {fichasuser}")
@@ -65,7 +68,10 @@ print(f"Sua mão: ", end="")
 print(", ".join(maouser))
 print(f"Seu total de fichas são: {fichasuser}")
 
-aposta2 = int(input("Quantas fichas você apostará na segunda rodada? "))
+aposta2 = int(input("Quantas fichas você apostará na segunda rodada? (Escreva 0 para desistir) "))
+if aposta2 == 0:
+    print("Você desistiu")
+    quit()
 fichasuser = fichasuser - aposta2
 aposta = aposta1 + aposta2
 
@@ -88,7 +94,10 @@ print(f"Sua mão: ", end="")
 print(", ".join(maouser))
 print(f"Seu total de fichas são: {fichasuser}")
 
-aposta3 = int(input("Quantas fichas você apostará na segunda rodada? "))
+aposta3 = int(input("Quantas fichas você apostará na segunda rodada? (Escreva 0 para desistir) "))
+if aposta3 == 0:
+    print("Você desistiu")
+    quit()
 fichasuser = fichasuser - aposta3
 aposta = aposta + aposta3
 
