@@ -28,12 +28,11 @@ while len(maouser) < 2:
         maouser.append(n)
     cartastodas.remove(n)
 
-#Por enquanto n vai ter bot
-#while len(maobot) < 5:
-#    n =random.choice(cartas)
-#    if n not in maobot:
-#        maobot.append(n)
-#    cartas.remove(n)
+while len(maobot) < 2:
+    n =random.choice(cartas)
+    if n not in maobot:
+        maobot.append(n)
+    cartas.remove(n)
 
 print(f"----PRIMEIRAS RODADA----")
 print("(", end="")
@@ -49,17 +48,27 @@ if aposta1 == 0:
     print("Você desistiu")
     quit()
 fichasuser = fichasuser - aposta1
+fichasbot = fichasuser - aposta1
 
 print(f"Seu total de fichas atuais são: {fichasuser}")
 print(f"Fichas na mesa: {aposta1}")
-segundarodada = ""
+segundarodadauser = ""
+segundarodadabot = ""
 
 n = random.choice(cartastodas)
-if n not in segundarodada:
+if n not in segundarodadauser:
     segundarodada = n
 cartastodas.remove(n)
 
-maomesa.append(segundarodada)
+maomesa.append(segundarodadauser)
+
+m = random.choice(cartastodas)
+if n not in segundarodadabot:
+    segundarodadabot = m
+cartastodas.remove(m)
+
+maobot.append(segundarodadabot)
+
 print("")
 print(f"----SEGUNDA RODADA----")
 print(maomesa)
@@ -73,20 +82,30 @@ if aposta2 == 0:
     print("Você desistiu")
     quit()
 fichasuser = fichasuser - aposta2
+fichasbot = fichasuser - aposta2
 aposta = aposta1 + aposta2
 
 print(f"Seu total de fichas atuais são: {fichasuser}")
 print(f"Fichas na mesa: {aposta}")
 print("")
 
-terceirarodada = ""
+terceirarodadauser = ""
+terceirarodadabot = ""
 
 n = random.choice(cartastodas)
-if n not in terceirarodada:
-    terceirarodada = n
+if n not in terceirarodadauser:
+    terceirarodadauser = n
 cartastodas.remove(n)
 
-maomesa.append(terceirarodada)
+maomesa.append(terceirarodadauser)
+
+m = random.choice(cartastodas)
+if n not in terceirarodadabot:
+    terceirarodadabot = m
+cartastodas.remove(m)
+
+maobot.append(terceirarodadabot)
+
 print(f"----TERCEIRA RODADA----")
 print(maomesa)
 print(" ")
@@ -107,6 +126,10 @@ maopoker = []
 maopoker = maopoker + maomesa
 maopoker = maopoker + maouser
 maopoker.sort(key=lambda carta: valores_cartas_naipes[carta])
+maopokerbot = []
+maopokerbot = maopokerbot + maomesa
+maopokerbot = maopokerbot + maobot
+maopokerbot.sort(key=lambda carta: valores_cartas_naipes[carta])
 print(f", ".join(maopoker))
 
 #Funções
@@ -117,6 +140,15 @@ def valor_da_carta(carta):
     valor = partes[0]            # Pega só "10"
     return valores_cartas[valor] # Usa o dicionário corretamente
 
+
+#Straight Flush Foda
+
+def StraighFlushFoda(mao):
+    naipes = [cartas.split()[1] for carta in mao]
+    valores = [valor_da_carta(c) for c in mao]
+    valores = list(set(valores))
+
+#Straight Flush
 
 
 #Flush (Todos os naipes iguais)
@@ -201,6 +233,7 @@ def Par(mao):
     return False
 
 #mões
+#USER
 #Royal Straight Flush
 if Straight(maopoker) == True and Flush(maopoker) == True and min(maopoker) == 10:
     print("Sua mão é um ROYAL STRAIGHT FLUSH!!!!!!")
@@ -240,3 +273,46 @@ elif Par(maopoker) == True:
 #Carta Alta
 else:
     print("Sua mão é uma CARTA ALTA")
+
+
+#BOT
+#Royal Straight Flush
+if Straight(maopokerbot) == True and Flush(maopokerbot) == True and min(maopokerbot) == 10:
+    print("Sua mão é um ROYAL STRAIGHT FLUSH!!!!!!")
+
+#Straight Flush
+elif Straight(maopokerbot) == True and Flush(maopokerbot) == True:
+    print("Sua mão é um STRAIGHT FLUSH!!!!")
+
+#Quadra
+elif Quadra(maopokerbot) == True:
+    print("Sua mão é uma QUADRA!!!")
+
+#Full House
+elif FullHouse(maopokerbot) == True:
+    print("Sua mão é um FULL HOUSE!!")
+
+#Flush
+elif Flush(maopokerbot) == True:
+    print("Sua mão é um FLUSH!")
+
+#Straight
+elif Straight(maopokerbot) == True:
+    print("Sua mão é um STRAIGHT!")
+
+#Trinca
+elif Trinca(maopokerbot) == True:
+    print("Sua mão é uma Trinca")
+
+#Dois pares
+elif Doispares(maopokerbot) == True:
+    print("Sua mão é um DOIS PARES")
+
+#Par
+elif Par(maopokerbot) == True:
+    print("Sua mão é um PAR")
+
+#Carta Alta
+else:
+    print("Sua mão é uma CARTA ALTA")
+
