@@ -97,7 +97,7 @@ print(f"Sua mão: ", end="")
 print(", ".join(maouser))
 print(f"Seu total de fichas são: {fichasuser}")
 
-aposta3 = int(input("Quantas fichas você apostará na segunda rodada? (Escreva 0 para desistir) "))
+aposta3 = int(input("Quantas fichas você apostará na terceira rodada? (Escreva 0 para desistir) "))
 if aposta3 == 0:
     print("Você desistiu")
     quit()
@@ -125,7 +125,8 @@ def valor_da_carta(carta):
     valor = partes[0]            # Pega só "10"
     return valores_cartas[valor] # Usa o dicionário corretamente
 
-
+pontosuser = 0
+pontosbot = 0
 #Royal Straight Flush        
 
 #Straight Flush
@@ -224,89 +225,109 @@ def CartaAlta(mao):
 #USER
 #Royal Straight Flush
 if Straight(maopoker) == True and Flush(maopoker) == True and min(maopoker) == 10:
+    pontosuser = 10
     print("Sua mão é um ROYAL STRAIGHT FLUSH!!!!!!")
 
 #Straight Flush
 elif Straight(maopoker) == True and Flush(maopoker) == True:
+    pontosuser = 9
     print("Sua mão é um STRAIGHT FLUSH!!!!")
 
 #Quadra
 elif Quadra(maopoker) == True:
+    pontosuser = 8
     print("Sua mão é uma QUADRA!!!")
 
 #Full House
 elif FullHouse(maopoker) == True:
+    pontosuser = 7
     print("Sua mão é um FULL HOUSE!!")
 
 #Flush
 elif Flush(maopoker) == True:
+    pontosuser = 6
     print("Sua mão é um FLUSH!")
 
 #Straight
 elif Straight(maopoker) == True:
+    pontosuser = 5
     print("Sua mão é um STRAIGHT!")
 
 #Trinca
 elif Trinca(maopoker) == True:
+    pontosuser = 4
     print("Sua mão é um Trinca")
 
 #Dois pares
 elif Doispares(maopoker) == True:
+    pontosuser = 3
     print("Sua mão é um PARES")
 
 #Par
 elif Par(maopoker) == True:
+    pontosuser = 2
     print("Sua mão é um PAR")
 
 #Carta Alta
 elif CartaAlta(maopoker) == True:
+    pontosuser = 1
     print("Sua mão é uma CARTA ALTA")
 
 
 #BOT
 #Royal Straight Flush
 if Straight == True and Flush == True and min == 10:
+    pontosbot = 10
     print("A mão do bot é um ROYAL STRAIGHT FLUSH!!!!!!")
 
 #Straight Flush
 elif Straight(maopokerbot) == True and Flush(maopokerbot) == True:
+    pontosbot = 9
     print("A mão do bot é um STRAIGHT FLUSH!!!!")
 
 #Quadra
 elif Quadra(maopokerbot) == True:
+    pontosbot = 8
     print("A mão do bot é uma QUADRA!!!")
 
 #Full House
 elif FullHouse(maopokerbot) == True:
+    pontosbot = 7
     print("A mão do bot é um FULL HOUSE!!")
 
 #Flush
 elif Flush(maopokerbot) == True:
+    pontosbot = 6
     print("A mão do bot é um FLUSH!")
 
 #Straight
 elif Straight(maopokerbot) == True:
+    pontosbot = 5
     print("A mão do bot é um STRAIGHT!")
 
 #Trinca
 elif Trinca(maopokerbot) == True:
+    pontosbot = 4
     print("A mão do bot é um Trinca")
 
 #Dois pares
 elif Doispares(maopokerbot) == True:
+    pontosbot = 3
     print("A mão do bot é um DOIS PARES")
 
 #Par
 elif Par(maopokerbot) == True:
+    pontosbot = 2
     print("A mão do bot é um PAR")
 
 #Carta Alta
 elif CartaAlta(maopokerbot) == True:
+    pontosbot = 1
     print("A mão do bot é uma CARTA ALTA")
 
-Straight and Flush and min == 10 > Straight and Flush > Quadra > FullHouse > Flush > Straight > Trinca > Doispares > Par > CartaAlta
-
-if maopoker > maopokerbot:
-    print("VOCÊ VENCEU!!!!!!!")
+if pontosuser > pontosbot:
+    print("VOCE GANHOU!!!!!!")
+elif pontosuser == pontosbot:
+    print("EMPATE")
 else:
-    print("perdedor.")
+    print("PERDEU OTARIO")
